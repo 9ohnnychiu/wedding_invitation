@@ -1,22 +1,29 @@
 // Wedding Website JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offsetTop = target.offsetTop - 70; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Active navigation highlighting
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.nav-bar');
+    
+    // Hide/Show Navigation on Scroll
     window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Only start hiding after scrolling past the hero section (about 100px)
+        if (scrollTop > 100) {
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down - hide navbar
+                navbar.classList.add('nav-hidden');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('nav-hidden');
+            }
+        } else {
+            // At the top of the page - always show navbar
+            navbar.classList.remove('nav-hidden');
+        }
+        
+        lastScrollTop = scrollTop;
+        
+        // Active navigation highlighting (existing code)
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
         
@@ -33,6 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) {
                 link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offsetTop = target.offsetTop - 70; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
             }
         });
     });
