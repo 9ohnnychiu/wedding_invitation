@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav-bar" x-data="{ open: false }">
@@ -20,6 +22,7 @@
             </button>
             <div class="nav-menu" :class="{ 'active': open }">
                 <a href="#home" class="nav-link" @click="open = false">首頁</a>
+                <a href="#spotlight" class="nav-link" @click="open = false">精選照片</a>
                 <a href="#story" class="nav-link" @click="open = false">我們的故事</a>
                 <a href="#gallery" class="nav-link" @click="open = false">照片集</a>
                 <a href="#details" class="nav-link" @click="open = false">婚禮資訊</a>
@@ -50,11 +53,59 @@
             </div>
         </section>
 
+        <!-- Image Spotlight Section -->
+        <section id="spotlight" class="spotlight-section">
+            <div class="container">
+                <!-- <h2 class="section-title">精選照片</h2> -->
+                <div class="spotlight-grid">
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/02-white3.png" alt="First Meeting" />
+                        <div class="spotlight-overlay">
+                            <h3>初次相遇</h3>
+                        </div>
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/03-black2.png" alt="Dating" />
+                        <div class="spotlight-overlay">
+                            <h3>戀愛時光</h3>
+                        </div>
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/04_Love.png" alt="Proposal" />
+                        <div class="spotlight-overlay">
+                            <h3>浪漫時刻</h3>
+                        </div>
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/05-white1.png" alt="Wedding Photo 1" />
+                        <div class="spotlight-overlay">
+                            <h3>婚禮時光</h3>
+                        </div>
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/06-white-back.png" alt="Wedding Photo 2" />
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/07-mix3.png" alt="Wedding Photo 3" />
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/08-red1.png" alt="Wedding Photo 4" />
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/YR5_4748.jpg" alt="Wedding Photo 5" />
+                    </div>
+                    <div class="spotlight-item">
+                        <img src="wedding_pictures/04.png" alt="Wedding Photo 6" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Story Section -->
         <section id="story" class="story-section">
             <div class="container">
                 <h2 class="section-title">我們的故事</h2>
-                
+
                 <div class="story-item">
                     <div class="story-content">
                         <h3>初次相遇</h3>
@@ -77,8 +128,8 @@
 
                 <div class="story-item">
                     <div class="story-content">
-                        <h3>求婚時刻</h3>
-                        <p>在最浪漫的時刻，他跪下求婚，我們決定攜手走向人生的下一個階段。</p>
+                        <h3>浪漫時刻</h3>
+                        <p>彼此相愛，我們決定攜手走向人生的下一個階段。</p>
                     </div>
                     <div class="story-image">
                         <img src="wedding_pictures/04_Love.png" alt="Proposal" />
@@ -244,4 +295,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
