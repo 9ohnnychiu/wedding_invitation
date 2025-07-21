@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我們的婚禮 - Wedding Invitation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar" x-data="{ open: false }">
+        <div class="nav-container">
+            <div class="nav-brand">Wedding</div>
+            <button class="nav-toggle" @click="open = !open">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" :class="{ 'active': open }">
+                <a href="#home" class="nav-link" @click="open = false">首頁</a>
+                <a href="#story" class="nav-link" @click="open = false">我們的故事</a>
+                <a href="#gallery" class="nav-link" @click="open = false">照片集</a>
+                <a href="#details" class="nav-link" @click="open = false">婚禮資訊</a>
+                <a href="#rsvp" class="nav-link" @click="open = false">回函</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-image">
+                <img src="wedding_pictures/01-cover.png" alt="Wedding Photo" />
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">WELCOME</h1>
+                <p class="hero-subtitle">我們即將結婚了</p>
+                <div class="hero-names">
+                    <span class="groom-name">新郎</span>
+                    <span class="and">&</span>
+                    <span class="bride-name">新娘</span>
+                </div>
+                <div class="hero-date">2024年12月31日</div>
+                <button class="cta-button" hx-get="#rsvp" hx-target="#app" hx-push-url="true">
+                    立即回函
+                </button>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section id="story" class="story-section">
+            <div class="container">
+                <h2 class="section-title">我們的故事</h2>
+                
+                <div class="story-item">
+                    <div class="story-content">
+                        <h3>初次相遇</h3>
+                        <p>在那個春天的午後，我們在咖啡廳裡初次相遇。一切都顯得那麼自然，彷彿命中注定。</p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/02-white3.png" alt="First Meeting" />
+                    </div>
+                </div>
+
+                <div class="story-item reverse">
+                    <div class="story-content">
+                        <h3>戀愛時光</h3>
+                        <p>從朋友到戀人，我們一起度過了許多美好的時光。每一個回憶都是珍貴的寶藏。</p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/03-black2.png" alt="Dating" />
+                    </div>
+                </div>
+
+                <div class="story-item">
+                    <div class="story-content">
+                        <h3>求婚時刻</h3>
+                        <p>在最浪漫的時刻，他跪下求婚，我們決定攜手走向人生的下一個階段。</p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/04_Love.png" alt="Proposal" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">照片集</h2>
+                <div class="gallery-grid" x-data="{ selectedImage: null }">
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/05-white1.png'">
+                        <img src="wedding_pictures/05-white1.png" alt="Wedding Photo 1" />
+                    </div>
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/06-white-back.png'">
+                        <img src="wedding_pictures/06-white-back.png" alt="Wedding Photo 2" />
+                    </div>
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/07-mix3.png'">
+                        <img src="wedding_pictures/07-mix3.png" alt="Wedding Photo 3" />
+                    </div>
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/08-red1.png'">
+                        <img src="wedding_pictures/08-red1.png" alt="Wedding Photo 4" />
+                    </div>
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/YR5_4748.jpg'">
+                        <img src="wedding_pictures/YR5_4748.jpg" alt="Wedding Photo 5" />
+                    </div>
+                    <div class="gallery-item" @click="selectedImage = 'wedding_pictures/04.png'">
+                        <img src="wedding_pictures/04.png" alt="Wedding Photo 6" />
+                    </div>
+
+                    <!-- Modal for enlarged image -->
+                    <div x-show="selectedImage" class="modal" @click="selectedImage = null" x-transition>
+                        <div class="modal-content" @click.stop>
+                            <img :src="selectedImage" alt="Enlarged photo" />
+                            <button @click="selectedImage = null" class="modal-close">&times;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section id="details" class="details-section">
+            <div class="container">
+                <h2 class="section-title">婚禮資訊</h2>
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3>證婚典禮</h3>
+                        <p><strong>日期:</strong> 2024年12月31日</p>
+                        <p><strong>時間:</strong> 下午2:00</p>
+                        <p><strong>地點:</strong> 台北君悅酒店</p>
+                        <p><strong>地址:</strong> 台北市信義區松壽路2號</p>
+                    </div>
+                    <div class="detail-card">
+                        <h3>婚宴晚宴</h3>
+                        <p><strong>日期:</strong> 2024年12月31日</p>
+                        <p><strong>時間:</strong> 晚上6:30</p>
+                        <p><strong>地點:</strong> 台北君悅酒店</p>
+                        <p><strong>地址:</strong> 台北市信義區松壽路2號</p>
+                    </div>
+                </div>
+                <div class="dress-code">
+                    <h3>服裝建議</h3>
+                    <p>請著正式服裝出席，避免穿著白色服裝</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section id="rsvp" class="rsvp-section">
+            <div class="container">
+                <h2 class="section-title">回函確認</h2>
+                <form class="rsvp-form" hx-post="/submit-rsvp" hx-target="#rsvp-response">
+                    <div class="form-group">
+                        <label for="name">姓名 *</label>
+                        <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attendance">是否有空與我們共進午餐？ *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">選擇一項</option>
+                            <option value="yes">會出席</option>
+                            <option value="no">無法出席</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">當天出席人數 *</label>
+                        <input type="number" id="guests" name="guests" placeholder="請輸入包含自己在內的人數" min="1" max="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietary">是否需要素食餐點</label>
+                        <textarea id="dietary" name="dietary" placeholder="如需要，請填寫需要幾人份"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alcohol">是否需要酒類飲料本喝啊？ *</label>
+                        <select id="alcohol" name="alcohol" required>
+                            <option value="">選擇一項</option>
+                            <option value="yes">需要</option>
+                            <option value="no">不需要</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transportation">請告知您使用的交通工具（含都會區號）</label>
+                        <textarea id="transportation" name="transportation" placeholder="具有需要收到餐廳定位的人才需填寫"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">您的聯絡電話是？</label>
+                        <input type="tel" id="contact" name="contact" placeholder="需要紙本喜帖的朋友填寫即可">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bride_side">您和新郎的關係是？</label>
+                        <select id="bride_side" name="bride_side">
+                            <option value="">選擇一項</option>
+                            <option value="family">家人</option>
+                            <option value="friend">朋友</option>
+                            <option value="colleague">同事</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="groom_side">您和新娘的關係是？</label>
+                        <select id="groom_side" name="groom_side">
+                            <option value="">選擇一項</option>
+                            <option value="family">家人</option>
+                            <option value="friend">朋友</option>
+                            <option value="colleague">同事</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">很謝謝您的回覆，最後有什麼想說的話想要跟新郎新娘自己說呢？</label>
+                        <textarea id="message" name="message" placeholder="您的祝福或建議..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">提交</button>
+                </form>
+
+                <div id="rsvp-response" class="response-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Wedding Website. Made with love.</p>
+            <div class="qr-code">
+                <p>分享給朋友</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
