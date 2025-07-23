@@ -7,7 +7,9 @@
     <title>我們的婚禮 - Wedding Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -46,7 +48,7 @@
                     <h1 class="couple-names">Johnny & Josephine</h1>
                     <p class="invitation-text">Wedding Invitation</p>
                 </div>
-                
+
                 <div class="wedding-details">
                     <div class="date-time">2025.10.25 17:30</div>
                     <div class="venue-info">
@@ -54,11 +56,11 @@
                         <div class="venue-floor">三樓詠劇場</div>
                     </div>
                 </div>
-                
+
                 <button class="cta-button" hx-get="#rsvp" hx-target="#app" hx-push-url="true">
                     立即回函
                 </button>
-                
+
                 <div class="invitation-card-container">
                     <img src="wedding_pictures/02_card.jpg" alt="invitation_card" class="invitation-card" />
                 </div>
@@ -71,43 +73,10 @@
                 <!-- <h2 class="section-title">精選照片</h2> -->
                 <div class="spotlight-grid">
                     <div class="spotlight-item">
-                        <img src="wedding_pictures/02-white3.png" alt="First Meeting" />
-                        <div class="spotlight-overlay">
-                            <h3>初次相遇</h3>
-                        </div>
+                        <img src="wedding_pictures/03.png" alt="Wedding Photo 3" />
                     </div>
                     <div class="spotlight-item">
-                        <img src="wedding_pictures/03-black2.png" alt="Dating" />
-                        <div class="spotlight-overlay">
-                            <h3>戀愛時光</h3>
-                        </div>
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/04_Love.png" alt="Proposal" />
-                        <div class="spotlight-overlay">
-                            <h3>浪漫時刻</h3>
-                        </div>
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/05-white1.png" alt="Wedding Photo 1" />
-                        <div class="spotlight-overlay">
-                            <h3>婚禮時光</h3>
-                        </div>
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/06-white-back.png" alt="Wedding Photo 2" />
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/07-mix3.png" alt="Wedding Photo 3" />
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/08-red1.png" alt="Wedding Photo 4" />
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/YR5_4748.jpg" alt="Wedding Photo 5" />
-                    </div>
-                    <div class="spotlight-item">
-                        <img src="wedding_pictures/04.png" alt="Wedding Photo 6" />
+                        <img src="wedding_pictures/04.png" alt="Wedding Photo 4" />
                     </div>
                 </div>
             </div>
@@ -116,36 +85,80 @@
         <!-- Story Section -->
         <section id="story" class="story-section">
             <div class="container">
-                <h2 class="section-title">我們的故事</h2>
+                <!-- <h2 class="section-title">我們的故事</h2> -->
 
                 <div class="story-item">
                     <div class="story-content">
-                        <h3>初次相遇</h3>
-                        <p>在那個春天的午後，我們在咖啡廳裡初次相遇。一切都顯得那麼自然，彷彿命中注定。</p>
+                        <h3>相遇不容易</h3>
+                        <p>我們個性完全不同</p>
                     </div>
                     <div class="story-image">
-                        <img src="wedding_pictures/02-white3.png" alt="First Meeting" />
+                        <img src="wedding_pictures/05.png" alt="First Meeting" />
                     </div>
                 </div>
 
                 <div class="story-item reverse">
                     <div class="story-content">
-                        <h3>戀愛時光</h3>
-                        <p>從朋友到戀人，我們一起度過了許多美好的時光。每一個回憶都是珍貴的寶藏。</p>
+                        <h3>在一起不簡單</h3>
+                        <p>
+                            一個大膽嘗試<br>
+                            一個謹慎保守<br>
+                            一個沉穩理性<br>
+                            一個直爽感性
+                        </p>
                     </div>
                     <div class="story-image">
-                        <img src="wedding_pictures/03-black2.png" alt="Dating" />
+                        <img src="wedding_pictures/06.png" alt="Dating" />
                     </div>
                 </div>
-
                 <div class="story-item">
                     <div class="story-content">
-                        <h3>浪漫時刻</h3>
-                        <p>彼此相愛，我們決定攜手走向人生的下一個階段。</p>
+                        <!-- <h3>浪漫時刻</h3> -->
+                        <p>卻擁有許多相同興趣<br>
+                            游泳、潛水、野營<br>
+                            登山、籃球、壘球
+                        </p>
                     </div>
                     <div class="story-image">
-                        <img src="wedding_pictures/04_Love.png" alt="Proposal" />
+                        <img src="wedding_pictures/07.png" alt="Proposal" />
                     </div>
+                </div>
+                <div class="story-item">
+                    <div class="story-content">
+                        <!-- <h3>浪漫時刻</h3> -->
+                        <p>上山下海<br>風雨無阻
+                        </p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/08.png" alt="Proposal" />
+                    </div>
+                </div>
+                <div class="story-item">
+                    <div class="story-content">
+                        <!-- <h3>浪漫時刻</h3> -->
+                        <p>現在<br>
+                            我們要再一起<br>
+                            陪伴彼此生活<br>
+                            完成更多的事情
+                        </p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/09.png" alt="Proposal" />
+                    </div>
+                </div>
+                <div class="story-item">
+                    <div class="story-content">
+                        <!-- <h3>浪漫時刻</h3> -->
+                        <p>一個人到不了的地方<br>
+                            那就攜手前進吧<br>
+
+                        </p>
+                    </div>
+                    <div class="story-image">
+                        <img src="wedding_pictures/10.png" alt="Proposal" />
+                    </div>
+                    <p>致我們生命中重要的您們<br>
+                        誠摯邀請您參加我們的婚禮</p>
                 </div>
             </div>
         </section>
