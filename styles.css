@@ -241,8 +241,8 @@ body {
 .hero-image {
     width: 100vw;
     height: 60vh;
-    margin-left: calc(-50vw + 50%);
-    margin-bottom:40px;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 40px;
     position: relative;
     overflow: hidden;
 }
