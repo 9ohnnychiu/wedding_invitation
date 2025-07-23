@@ -107,36 +107,116 @@ body {
     max-width: 800px;
 }
 
-.hero-title {
-    font-size: 4rem;
-    font-weight: 300;
-    letter-spacing: 0.5rem;
-    margin-bottom: 1rem;
-    color: #333;
+.invitation-header {
+    margin-bottom: 3rem;
 }
 
-.hero-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #666;
+.couple-names {
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 0.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+    text-transform: none;
+    font-family: 'Great Vibes', cursive;
 }
 
-.hero-names {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin: 2rem 0;
+.invitation-text {
+    font-size: 1.4rem;
+    color: #888;
+    letter-spacing: 0.2rem;
+    text-transform: lowercase;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.wedding-details {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.date-time {
+    font-size: 2rem;
+    font-weight: 400;
     color: #d4b99c;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
 }
 
-.and {
-    margin: 0 1rem;
-    color: #999;
+.venue-info {
+    margin-top: 1rem;
 }
 
-.hero-date {
-    font-size: 1.5rem;
-    color: #666;
-    margin: 2rem 0;
+.venue-name {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.venue-floor {
+    font-size: 1rem;
+    color: #777;
+    font-weight: 300;
+}
+
+.invitation-card-container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invitation-card {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 
+                0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    background: white;
+    padding: 8px;
+    transform: rotate(-2deg);
+    position: relative;
+}
+
+.invitation-card::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, 
+                #f8f4f0 0%, 
+                #f0e6d6 25%, 
+                #e8ddd0 50%, 
+                #f0e6d6 75%, 
+                #f8f4f0 100%);
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.invitation-card:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 
+                0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(212, 185, 156, 0.5);
+}
+
+.invitation-card:hover::before {
+    opacity: 0.8;
+    transform: scale(1.02);
 }
 
 .cta-button {
@@ -597,12 +677,35 @@ section {
         margin-top: 2rem;
     }
 
-    .hero-title {
+    .couple-names {
         font-size: 2.5rem;
+        letter-spacing: 0.2rem;
     }
 
-    .hero-names {
-        font-size: 1.8rem;
+    .invitation-text {
+        font-size: 1.2rem;
+    }
+
+    .wedding-details {
+        margin: 2rem 0;
+        padding: 1.5rem;
+    }
+
+    .date-time {
+        font-size: 1.5rem;
+    }
+
+    .venue-name {
+        font-size: 1.1rem;
+    }
+
+    .invitation-card-container {
+        margin-top: 2rem;
+    }
+
+    .invitation-card {
+        max-width: 350px;
+        transform: rotate(-1deg);
     }
 
     .story-item,
@@ -643,13 +746,45 @@ section {
         font-size: 14px;
     }
 
-    .hero-title {
+    .couple-names {
         font-size: 2rem;
-        letter-spacing: 0.3rem;
+        letter-spacing: 0.1rem;
     }
 
-    .hero-names {
-        font-size: 1.5rem;
+    .invitation-text {
+        font-size: 1rem;
+    }
+
+    .wedding-details {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+
+    .date-time {
+        font-size: 1.3rem;
+    }
+
+    .venue-name {
+        font-size: 1rem;
+    }
+
+    .venue-floor {
+        font-size: 0.9rem;
+    }
+
+    .invitation-card-container {
+        margin-top: 1.5rem;
+    }
+
+    .invitation-card {
+        max-width: 280px;
+        transform: rotate(-0.5deg);
+        border-radius: 15px;
+        padding: 6px;
+    }
+
+    .invitation-card::before {
+        border-radius: 20px;
     }
 
     .gallery-grid {

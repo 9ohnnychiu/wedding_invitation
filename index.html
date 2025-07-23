@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我們的婚禮 - Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -39,17 +42,26 @@
                 <img src="wedding_pictures/01_cover.png" alt="Wedding Photo" />
             </div>
             <div class="hero-content">
-                <h1 class="hero-title">WELCOME</h1>
-                <p class="hero-subtitle">我們即將結婚了</p>
-                <div class="hero-names">
-                    <span class="groom-name">新郎</span>
-                    <span class="and">&</span>
-                    <span class="bride-name">新娘</span>
+                <div class="invitation-header">
+                    <h1 class="couple-names">Johnny & Josephine</h1>
+                    <p class="invitation-text">Wedding Invitation</p>
                 </div>
-                <div class="hero-date">2025年10月25日</div>
+                
+                <div class="wedding-details">
+                    <div class="date-time">2025.10.25 17:30</div>
+                    <div class="venue-info">
+                        <div class="venue-name">晶宴會館｜桃園館</div>
+                        <div class="venue-floor">三樓詠劇場</div>
+                    </div>
+                </div>
+                
                 <button class="cta-button" hx-get="#rsvp" hx-target="#app" hx-push-url="true">
                     立即回函
                 </button>
+                
+                <div class="invitation-card-container">
+                    <img src="wedding_pictures/02_card.jpg" alt="invitation_card" class="invitation-card" />
+                </div>
             </div>
         </section>
 
