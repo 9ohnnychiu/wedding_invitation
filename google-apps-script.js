@@ -25,8 +25,29 @@ const SHEET_NAME = 'Wedding RSVP Responses';
  */
 function doPost(e) {
   try {
-    // Parse the request data
-    const data = JSON.parse(e.postData.contents);
+    let data = {};
+    
+    // Handle both JSON and form data
+    if (e.postData.type === 'application/json') {
+      // Parse JSON data
+      data = JSON.parse(e.postData.contents);
+    } else {
+      // Parse form data (multipart/form-data or application/x-www-form-urlencoded)
+      const parameters = e.parameter;
+      data = {
+        name: parameters.name || '',
+        attendance: parameters.attendance || '',
+        guests: parameters.guests || '',
+        dietary: parameters.dietary || '',
+        alcohol: parameters.alcohol || '',
+        transportation: parameters.transportation || '',
+        contact: parameters.contact || '',
+        bride_side: parameters.bride_side || '',
+        groom_side: parameters.groom_side || '',
+        message: parameters.message || '',
+        timestamp: new Date().toISOString()
+      };
+    }
     
     // Log the received data for debugging
     console.log('Received RSVP data:', data);

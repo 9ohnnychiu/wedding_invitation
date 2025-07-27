@@ -236,7 +236,15 @@
         <section id="rsvp" class="rsvp-section">
             <div class="container">
                 <h2 class="section-title">回函確認</h2>
-                <form class="rsvp-form" hx-post="/submit-rsvp" hx-target="#rsvp-response">
+                <form class="rsvp-form" 
+                      hx-post="https://script.google.com/macros/s/AKfycbxNbBWuOBuLwHCb256c3NtF1DrKyigDOWHjEfayR7wkw7qceR8m-GO0ujF6Kif8Ht1i/exec" 
+                      hx-target="#rsvp-response"
+                      hx-encoding="multipart/form-data"
+                      hx-indicator="#loading-indicator"
+                      hx-on::before-request="this.querySelector('.submit-button').textContent = '提交中...'; this.querySelector('.submit-button').disabled = true"
+                      hx-on::after-request="this.querySelector('.submit-button').textContent = '提交'; this.querySelector('.submit-button').disabled = false"
+                      hx-on::response-error="document.getElementById('rsvp-response').innerHTML = '<div class=\"response-message error\">提交失敗，請稍後再試或聯繫我們。</div>'"
+                      hx-on::after-settle="if(this.querySelector('.response-message.success')) this.reset()">
                     <div class="form-group">
                         <label for="name">姓名 *</label>
                         <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
@@ -308,6 +316,7 @@
                     </div>
 
                     <button type="submit" class="submit-button">提交</button>
+                    <div id="loading-indicator" class="htmx-indicator">提交中...</div>
                 </form>
 
                 <div id="rsvp-response" class="response-message"></div>

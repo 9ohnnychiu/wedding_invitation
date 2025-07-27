@@ -653,6 +653,25 @@ section {
     border: 1px solid #f5c6cb;
 }
 
+/* HTMX Loading Indicator */
+.htmx-indicator {
+    display: none;
+    text-align: center;
+    padding: 0.5rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.htmx-request .htmx-indicator {
+    display: block;
+}
+
+.htmx-request .submit-button {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* Footer */
 .footer {
     background: #333;

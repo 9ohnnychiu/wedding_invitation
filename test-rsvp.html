@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP Test</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #333; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .htmx-indicator { display: none; color: #666; font-style: italic; margin-top: 10px; }
+        .htmx-request .htmx-indicator { display: block; }
+        .response-message { margin-top: 15px; padding: 10px; border-radius: 4px; }
+        .response-message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .response-message.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>RSVP Test Form</h1>
+    
+    <form hx-post="https://script.google.com/macros/s/AKfycbxNbBWuOBuLwHCb256c3NtF1DrKyigDOWHjEfayR7wkw7qceR8m-GO0ujF6Kif8Ht1i/exec" 
+          hx-target="#response"
+          hx-encoding="multipart/form-data"
+          hx-indicator="#loading"
+          hx-on::before-request="this.querySelector('button').disabled = true"
+          hx-on::after-request="this.querySelector('button').disabled = false">
+        
+        <div class="form-group">
+            <label for="name">姓名 *</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="attendance">是否出席 *</label>
+            <select id="attendance" name="attendance" required>
+                <option value="">選擇一項</option>
+                <option value="yes">會出席</option>
+                <option value="no">無法出席</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="guests">出席人數</label>
+            <input type="number" id="guests" name="guests" min="1" max="10">
+        </div>
+
+        <div class="form-group">
+            <label for="message">留言</label>
+            <textarea id="message" name="message"></textarea>
+        </div>
+
+        <button type="submit">提交測試</button>
+        <div id="loading" class="htmx-indicator">提交中...</div>
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+        // Handle success/error responses
+        document.body.addEventListener('htmx:afterResponse', function(evt) {
+            const xhr = evt.detail.xhr;
+            if (xhr.status === 200) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        document.getElementById('response').innerHTML = 
+                            '<div class="response-message success">成功！' + response.message + '</div>';
+                    } else {
+                        document.getElementById('response').innerHTML = 
+                            '<div class="response-message error">錯誤：' + response.message + '</div>';
+                    }
+                } catch (e) {
+                    document.getElementById('response').innerHTML = 
+                        '<div class="response-message error">回應格式錯誤</div>';
+                }
+            } else {
+                document.getElementById('response').innerHTML = 
+                    '<div class="response-message error">HTTP錯誤：' + xhr.status + '</div>';
+            }
+        });
+
+        document.body.addEventListener('htmx:responseError', function(evt) {
+            document.getElementById('response').innerHTML = 
+                '<div class="response-message error">網路錯誤，請稍後再試</div>';
+        });
+    </script>
+</body>
+</html>
