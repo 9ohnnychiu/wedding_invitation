@@ -122,13 +122,23 @@ document.body.addEventListener('htmx:afterSwap', function(evt) {
 // HTMX RSVP form event handlers
 document.body.addEventListener('htmx:responseError', function(evt) {
     if (evt.detail.target.classList.contains('rsvp-form')) {
+        console.log('HTMX Response Error:', evt.detail);
         document.getElementById('rsvp-response').innerHTML = 
             '<div class="response-message error">提交失敗，請稍後再試或聯繫我們。</div>';
     }
 });
 
+document.body.addEventListener('htmx:sendError', function(evt) {
+    if (evt.detail.target.classList.contains('rsvp-form')) {
+        console.log('HTMX Send Error (likely CORS):', evt.detail);
+        document.getElementById('rsvp-response').innerHTML = 
+            '<div class="response-message error">網路連線錯誤，請檢查網路連線後再試。</div>';
+    }
+});
+
 document.body.addEventListener('htmx:afterRequest', function(evt) {
     if (evt.detail.target.classList.contains('rsvp-form')) {
+        console.log('HTMX After Request:', evt.detail);
         const xhr = evt.detail.xhr;
         if (xhr.status === 200) {
             try {
@@ -142,9 +152,14 @@ document.body.addEventListener('htmx:afterRequest', function(evt) {
                         '<div class="response-message error">提交失敗：' + (response.message || '未知錯誤') + '</div>';
                 }
             } catch (e) {
+                console.error('JSON Parse Error:', e);
                 document.getElementById('rsvp-response').innerHTML = 
                     '<div class="response-message error">回應格式錯誤，請稍後再試。</div>';
             }
+        } else if (xhr.status === 0) {
+            // This usually indicates a CORS error
+            document.getElementById('rsvp-response').innerHTML = 
+                '<div class="response-message error">連線被阻擋，可能是CORS政策問題。請稍後再試或聯繫我們。</div>';
         }
     }
 });

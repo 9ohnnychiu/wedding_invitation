@@ -95,8 +95,8 @@ function doOptions(e) {
     .createTextOutput('')
     .setMimeType(ContentService.MimeType.TEXT)
     .setHeader('Access-Control-Allow-Origin', '*')
-    .setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-    .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
     .setHeader('Access-Control-Max-Age', '86400');
 }
 

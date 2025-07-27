@@ -61,6 +61,7 @@
     <script>
         // Handle success/error responses
         document.body.addEventListener('htmx:afterResponse', function(evt) {
+            console.log('HTMX After Response:', evt.detail);
             const xhr = evt.detail.xhr;
             if (xhr.status === 200) {
                 try {
@@ -68,23 +69,36 @@
                     if (response.success) {
                         document.getElementById('response').innerHTML = 
                             '<div class="response-message success">成功！' + response.message + '</div>';
+                        evt.detail.target.reset();
                     } else {
                         document.getElementById('response').innerHTML = 
                             '<div class="response-message error">錯誤：' + response.message + '</div>';
                     }
                 } catch (e) {
+                    console.error('Parse Error:', e);
                     document.getElementById('response').innerHTML = 
-                        '<div class="response-message error">回應格式錯誤</div>';
+                        '<div class="response-message error">回應格式錯誤: ' + xhr.responseText + '</div>';
                 }
             } else {
                 document.getElementById('response').innerHTML = 
-                    '<div class="response-message error">HTTP錯誤：' + xhr.status + '</div>';
+                    '<div class="response-message error">HTTP錯誤：' + xhr.status + ' - ' + xhr.statusText + '</div>';
             }
         });
 
         document.body.addEventListener('htmx:responseError', function(evt) {
+            console.log('HTMX Response Error:', evt.detail);
             document.getElementById('response').innerHTML = 
-                '<div class="response-message error">網路錯誤，請稍後再試</div>';
+                '<div class="response-message error">回應錯誤，請稍後再試</div>';
+        });
+
+        document.body.addEventListener('htmx:sendError', function(evt) {
+            console.log('HTMX Send Error (CORS):', evt.detail);
+            document.getElementById('response').innerHTML = 
+                '<div class="response-message error">CORS錯誤：無法連接到服務器。請檢查Google Apps Script部署設定。</div>';
+        });
+
+        document.body.addEventListener('htmx:beforeRequest', function(evt) {
+            console.log('HTMX Before Request:', evt.detail);
         });
     </script>
 </body>
