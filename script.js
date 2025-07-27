@@ -131,7 +131,8 @@ async function submitRSVP(form) {
 // Function to submit to Google Sheets
 async function submitToGoogleSheets(data) {
     // Google Apps Script Web App URL (you'll need to create this)
-    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    // const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNbBWuOBuLwHCb256c3NtF1DrKyigDOWHjEfayR7wkw7qceR8m-GO0ujF6Kif8Ht1i/exec';
     
     // For static deployment, we'll use a different approach
     // This is a placeholder - you'll need to implement this based on your Google Sheets setup

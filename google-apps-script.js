@@ -18,7 +18,7 @@
 
 // Replace with your Google Sheet ID
 const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID';
-const SHEET_NAME = 'RSVP Responses';
+const SHEET_NAME = 'Wedding RSVP Responses';
 
 /**
  * Handle POST requests from the wedding website
