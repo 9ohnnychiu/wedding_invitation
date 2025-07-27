@@ -43,8 +43,8 @@ function doPost(e) {
       }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader('Access-Control-Allow-Origin', '*')
-      .setHeader('Access-Control-Allow-Methods', 'POST')
-      .setHeader('Access-Control-Allow-Headers', 'Content-Type');
+      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
       
   } catch (error) {
     console.error('Error processing RSVP:', error);
@@ -56,8 +56,14 @@ function doPost(e) {
         message: 'Failed to submit RSVP: ' + error.toString()
       }))
       .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', '*');
+      .setHeader('Access-Control-Allow-Origin', '*')
+      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   }
+}
+
+function doGet(e) {
+  return doPost(e); // Handle GET requests the same way
 }
 
 /**
