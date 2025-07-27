@@ -237,13 +237,12 @@
             <div class="container">
                 <h2 class="section-title">回函確認</h2>
                 <form class="rsvp-form"
-                    hx-post="https://script.google.com/macros/s/AKfycbxNbBWuOBuLwHCb256c3NtF1DrKyigDOWHjEfayR7wkw7qceR8m-GO0ujF6Kif8Ht1i/exec"
-                    hx-target="#rsvp-response" hx-encoding="multipart/form-data" hx-indicator="#loading-indicator"
-                    hx-on::before-request="this.querySelector('.submit-button').textContent = '提交中...'; this.querySelector('.submit-button').disabled = true"
-                    hx-on::after-request="this.querySelector('.submit-button').textContent = '提交'; this.querySelector('.submit-button').disabled = false"
-                    hx-on::response-error="document.getElementById('rsvp-response').innerHTML = '&lt;div class=&quot;response-message error&quot;&gt;提交失敗，請稍後再試或聯繫我們。&lt;/div&gt;'"
-                    hx-on::after-settle="if(this.querySelector('.response-message.success')) this.reset()" &gt; <div
-                    class="form-group">
+                    hx-post="https://script.google.com/macros/s/AKfycbzlUHwcH5ntAQHSiqQ9rRXaJAfblrD5b2ui2nNBnz3uhmA77sIysWZ1tafmpngoi3qM6g/exec"
+                    hx-target="#rsvp-response" 
+                    hx-encoding="multipart/form-data" 
+                    hx-indicator="#loading-indicator">
+                    
+                    <div class="form-group">
                     <label for="name">姓名 *</label>
                     <input type="text" id="name" name="name" placeholder="請輸入姓名" required>
             </div>

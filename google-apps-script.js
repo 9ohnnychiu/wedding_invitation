@@ -28,12 +28,12 @@ function doPost(e) {
     let data = {};
     
     // Handle both JSON and form data
-    if (e.postData.type === 'application/json') {
+    if (e.postData && e.postData.type === 'application/json') {
       // Parse JSON data
       data = JSON.parse(e.postData.contents);
     } else {
       // Parse form data (multipart/form-data or application/x-www-form-urlencoded)
-      const parameters = e.parameter;
+      const parameters = e.parameter || {};
       data = {
         name: parameters.name || '',
         attendance: parameters.attendance || '',
@@ -52,20 +52,19 @@ function doPost(e) {
     // Log the received data for debugging
     console.log('Received RSVP data:', data);
     
-    // Add the data to the Google Sheet
-    const result = addRSVPToSheet(data);
+    // For now, just return success without writing to sheet (for testing)
+    // Uncomment the next line once CORS is working
+    // const result = addRSVPToSheet(data);
     
     // Return success response
     return ContentService
       .createTextOutput(JSON.stringify({
         success: true,
-        message: 'RSVP submitted successfully',
-        rowNumber: result.rowNumber
+        message: 'RSVP received successfully (test mode)',
+        data: data,
+        timestamp: new Date().toISOString()
       }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', '*')
-      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
     console.error('Error processing RSVP:', error);
@@ -74,17 +73,23 @@ function doPost(e) {
     return ContentService
       .createTextOutput(JSON.stringify({
         success: false,
-        message: 'Failed to submit RSVP: ' + error.toString()
+        message: 'Failed to submit RSVP: ' + error.toString(),
+        timestamp: new Date().toISOString()
       }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', '*')
-      .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-      .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doGet(e) {
-  return doPost(e); // Handle GET requests the same way
+  // Return a test response for GET requests
+  return ContentService
+    .createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Google Apps Script is working',
+      timestamp: new Date().toISOString(),
+      method: 'GET'
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 /**
@@ -93,11 +98,7 @@ function doGet(e) {
 function doOptions(e) {
   return ContentService
     .createTextOutput('')
-    .setMimeType(ContentService.MimeType.TEXT)
-    .setHeader('Access-Control-Allow-Origin', '*')
-    .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
-    .setHeader('Access-Control-Max-Age', '86400');
+    .setMimeType(ContentService.MimeType.TEXT);
 }
 
 /**
